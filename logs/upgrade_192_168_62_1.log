@@ -1,0 +1,88 @@
+[Info] progress:| 100% |
+[Info] 
+send file build.xml to 192.168.62.1 successful.
+[Info] wait upgrade result from  192.168.62.1 ...
+[Info] receive upgrade result: successful1111
+[Info] [OK] 192.168.62.1 upgrade successful.
+
+[Info] progress:| 100% |
+[Info] 
+send file build.xml to 192.168.62.1 successful.
+[Info] wait upgrade result from  192.168.62.1 ...
+[Info] receive upgrade result: aaaAOsuccessfulK
+[Info] [OK] 192.168.62.1 upgrade successful.
+
+[Info] progress:| 100% |
+[Info] 
+send file build.xml to 192.168.62.1 successful.
+[Info] wait upgrade result from  192.168.62.1 ...
+[Info] receive upgrade result: aaAT!commasuccessful!OKsdsfad
+[Info] [OK] 192.168.62.1 upgrade successful.
+
+[Info] progress:| 100% |
+[Info] 
+send file build.xml to 192.168.62.1 successful.
+[Info] wait upgrade result from  192.168.62.1 ...
+[Info] receive upgrade result: AT!command mosuccessfuldel!OK
+[Info] [OK] 192.168.62.1 upgrade successful.
+
+[Info] progress:| 100% |
+[Info] 
+send file build.xml to 192.168.62.1 successful.
+[Info] wait upgrade result from  192.168.62.1 ...
+[Info] receive upgrade result: AT!command mosuccessfuldel!OK
+[Info] [OK] 192.168.62.1 upgrade successful.
+
+[Info] progress:| 100% |
+[Info] 
+send file build.xml to 192.168.62.1 successful.
+[Info] wait upgrade result from  192.168.62.1 ...
+[Info] receive upgrade result: AT!command model!OKsuccessful
+[Info] [OK] 192.168.62.1 upgrade successful.
+
+[Info] progress:| 100% |
+[Info] 
+send file build.xml to 192.168.62.1 successful.
+[Info] wait upgrade result from  192.168.62.1 ...
+[Info] receive upgrade result: AT!command model!OKsuccessful
+[Info] [OK] 192.168.62.1 upgrade successful.
+
+[Info] progress:| 100% |
+[Info] 
+send file build.xml to 192.168.62.1 successful.
+[Info] wait upgrade result from  192.168.62.1 ...
+[Info] receive upgrade result: AT!command model!OKsuccessful
+[Info] [OK] 192.168.62.1 upgrade successful.
+
+[Info] progress:| 100% |
+[Info] 
+send file build.xml to 192.168.62.1 successful.
+[Info] wait upgrade result from  192.168.62.1 ...
+[Info] receive upgrade result: AT!command model!OKsuccessful
+[Info] [OK] 192.168.62.1 upgrade successful.
+
+[Info] progress:| 100% |
+[Info] 
+send file build.xml to 192.168.62.1 successful.
+[Info] wait upgrade result from  192.168.62.1 ...
+[Info] receive upgrade result: AT!command model!OKfail����
+[Info] [Fail] 192.168.62.1 upgrade fail.
+
+[Info] progress:| 100% |
+[Info] send file build.xml to 192.168.62.1 successful.
+[Info] wait upgrade result from  192.168.62.1 ...
+[Info] receive upgrade result: AT!command model!OKsuccessful
+[Info] [OK] 192.168.62.1 upgrade successful.
+
+[Info] progress:| 100% |
+[Info] send file build.xml to 192.168.62.1 successful.
+[Info] wait upgrade result from  192.168.62.1 ...
+[Info] receive upgrade result: AT!command model!OK successful
+[Info] [OK] 192.168.62.1 upgrade successful.
+
+[Info] progress:| 100% |
+[Info] send file build.xml to 192.168.62.1 successful.
+[Info] wait upgrade result from  192.168.62.1 ...
+[Info] receive upgrade result: AT!command model!OK successful
+[Info] [OK] 192.168.62.1 upgrade successful.
+
