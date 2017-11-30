@@ -5,7 +5,7 @@
  */
 package com.bambu.tool.task;
 
-import com.bambu.tool.RetMessage;
+import com.bambu.tool.main.RetMessage;
 import com.bambu.tool.file.FileTransfer;
 import java.io.BufferedWriter;
 import java.io.DataInputStream;
@@ -46,7 +46,10 @@ public class UpgradeTask implements Callable {
          * 探测主机是否可达,3秒后无响应当作不可达。
          */
         RetMessage retMessage = new RetMessage();
+        retMessage.setHost(inetAddress.getHostAddress());
         boolean isValidHost = false;
+        long startTime = System.currentTimeMillis();//开始时间
+        File file = new File(properties.getProperty("upgrade.data.file"));
         try {
             boolean isReachable = inetAddress.isReachable(2000);
             if (isReachable) {
@@ -61,7 +64,7 @@ public class UpgradeTask implements Callable {
                 isValidHost = isValidHost(validHostMsg);
                 if (isValidHost) {
                     FileTransfer transfer = new FileTransfer(socket, properties, dataReader, dataWriter);
-                    retMessage = transfer.sendFile();//发送文件
+                    retMessage = transfer.sendFile(file);//发送文件
                     switch (retMessage.getCode()) {
                         case -1:
                             //文件缺少。
@@ -94,9 +97,19 @@ public class UpgradeTask implements Callable {
         } catch (Exception e) {
             retMessage.addLog("upgrade exception :" + e.getMessage());
         } finally {
+            long costTime = System.currentTimeMillis() - startTime;
+            long size = file.length();
+            String result = "";
+            if (retMessage.getCode() == 0) {
+                result = "[Fail]" + retMessage.getHost() + " config success,not upgrade.";
+            } else if (retMessage.getCode() == 1) {
+                result = "[OK]" + retMessage.getHost() + " upgrade successful. [file size:" + size + " cost:" + costTime + "]";
+            } else {
+                result = "[Fail]" + retMessage.getHost() + " upgrade fail.";
+            }
             if (isValidHost) {
                 writeToLogFile(retMessage.getLogBuffer().toString(), "upgrade_" + inetAddress.getHostAddress().replaceAll("\\.", "_") + ".log");
-                writeToLogFile(retMessage.getLogBuffer().toString(), "upgrade_" + inetAddress.getHostAddress().replaceAll("\\.", "_") + ".log");
+                writeToLogFile(result, "report.log");
             }
             Thread.sleep(2000);
             if (socket != null) {
@@ -152,7 +165,6 @@ public class UpgradeTask implements Callable {
     private void writeToLogFile(String content, String filename) throws IOException {
         BufferedWriter bufwriter = null;
         String file = System.getProperty("user.dir") + "/logs";
-        System.out.println(content);
         File fileObj = new File(file);
         if (!fileObj.exists()) {
             fileObj.mkdir();

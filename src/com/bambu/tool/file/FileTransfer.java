@@ -5,7 +5,7 @@
  */
 package com.bambu.tool.file;
 
-import com.bambu.tool.RetMessage;
+import com.bambu.tool.main.RetMessage;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -37,13 +37,13 @@ public class FileTransfer {
      *
      * @return
      */
-    public RetMessage sendFile() {
+    public RetMessage sendFile(File file) {
         String host = clientSocket.getInetAddress().getHostAddress();
         RetMessage retMessage = new RetMessage();
         FileInputStream fileInputStream = null;
         StringBuilder upgradeRspBuffer = new StringBuilder();
         try {
-            File file = new File(properties.getProperty("upgrade.data.file"));
+
             if (!file.exists()) {
                 retMessage.setCode(-1);//文件缺失
             } else {

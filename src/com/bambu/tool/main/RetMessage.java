@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bambu.tool;
+package com.bambu.tool.main;
 
 /**
  *
@@ -12,11 +12,22 @@ package com.bambu.tool;
 public class RetMessage {
 
     private int code;
+    private String host;
+
     private StringBuilder logBuffer = new StringBuilder();//记录日志信息
     private StringBuilder noteBuffer = new StringBuilder();//记录提示信息
+    
+    
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
 
     public void addLog(String message) {
-        String msg = "[Info] "+message;
+        String msg = "[Info] " + message;
         System.out.println(msg);
         getLogBuffer().append(msg).append("\n");
     }
