@@ -46,13 +46,13 @@ public class UpgradeTask implements Callable {
          * 探测主机是否可达,3秒后无响应当作不可达。
          */
         RetMessage retMessage = new RetMessage();
-        retMessage.setHost(inetAddress.getHostAddress());
         boolean isValidHost = false;
         long startTime = System.currentTimeMillis();//开始时间
         File file = new File(properties.getProperty("upgrade.data.file"));
         try {
-            boolean isReachable = inetAddress.isReachable(2000);
+            boolean isReachable = inetAddress.isReachable(3000);
             if (isReachable) {
+                retMessage.addLog("connect to " + inetAddress.getHostAddress());
                 int port = Integer.parseInt(properties.getProperty("upgrade.host.connect.port", "5001"));
                 int timeout = Integer.parseInt(properties.getProperty("upgrade.connect.timeout", "40000"));
                 socket = new Socket(inetAddress.getHostAddress(), port);
@@ -72,7 +72,7 @@ public class UpgradeTask implements Callable {
                             break;
                         case 0:
                             //文件发送成功,配置成功.
-                            retMessage.addLog("[Fail] " + host + " not upgrade but config config successful.");
+                            retMessage.addLog("[Fail] " + host + " not upgrade but config successful.");
                             break;
                         case 1:
                             //文件发送成功，升级成功,注意本机升级不自动重启.
@@ -95,17 +95,17 @@ public class UpgradeTask implements Callable {
                 }
             }
         } catch (Exception e) {
-            retMessage.addLog("upgrade exception :" + e.getMessage());
+            retMessage.addLog(inetAddress.getHostAddress() + " upgrade exception :" + e.getMessage());
         } finally {
             long costTime = System.currentTimeMillis() - startTime;
             long size = file.length();
             String result = "";
             if (retMessage.getCode() == 0) {
-                result = "[Fail]" + retMessage.getHost() + " config success,not upgrade.";
+                result = "[Fail]" + inetAddress.getHostAddress() + " config success,not upgrade.";
             } else if (retMessage.getCode() == 1) {
-                result = "[OK]" + retMessage.getHost() + " upgrade successful. [file size:" + size + " cost:" + costTime + "]";
+                result = "[OK]" + inetAddress.getHostAddress() + " upgrade successful. [file size:" + size + "B. cost time:" + costTime + "ms]";
             } else {
-                result = "[Fail]" + retMessage.getHost() + " upgrade fail.";
+                result = "[Fail]" + inetAddress.getHostAddress() + " upgrade fail.";
             }
             if (isValidHost) {
                 writeToLogFile(retMessage.getLogBuffer().toString(), "upgrade_" + inetAddress.getHostAddress().replaceAll("\\.", "_") + ".log");

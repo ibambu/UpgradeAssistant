@@ -54,6 +54,7 @@ public class FileTransfer {
                 /**
                  * 开始发送文件
                  */
+                retMessage.addLog("start send file " + file.getName() + " to " + host+" ...");
                 StringBuilder progressBuffer = new StringBuilder("progress:");
                 while ((length = fileInputStream.read(bytes, 0, bytes.length)) != -1) {
                     outWriter.write(bytes, 0, length);
@@ -100,8 +101,7 @@ public class FileTransfer {
                 }
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
-            retMessage.addLog("upgrade exception: " + ex.toString());
+            retMessage.addLog("upgrade exception: " + ex.getMessage());
         } finally {
             if (fileInputStream != null) {
                 try {
